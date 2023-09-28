@@ -2,6 +2,7 @@ const { body, param, validationResult } = require("express-validator");
 
 const taskCreationValidation = [
   body("title", "Title is required").notEmpty(),
+  body("description", "description is required").notEmpty(),
   body("status", "Status field should be either open, inprogress or completed").isIn([
     "open",
     "inprogress",

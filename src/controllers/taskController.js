@@ -76,7 +76,7 @@ const taskController = {
           updatedAt: true,
         },
       });
-      res.json(newTask);
+      res.status(201).json(newTask);
     } catch (error) {
       console.error(error);
       res.status(500).send("Server Error");
@@ -87,19 +87,9 @@ const taskController = {
     try {
       const { id } = req.params;
       const deletedTask = await prisma.task.delete({
-        where: {
-          id: parseInt(id),
-        },
-        select: {
-          id: true,
-          title: true,
-          description: true,
-          status: true,
-          createdAt: true,
-          updatedAt: true,
-        },
+        where: { id: parseInt(id) },
       });
-      res.json(deletedTask);
+      res.status(204);
     } catch (error) {
       console.error(error);
       res.status(500).send("Server Error");

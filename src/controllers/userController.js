@@ -47,7 +47,7 @@ const userController = {
         },
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
-      res.header("x-auth-token", `Bearer ${token}`).json({ token });
+      res.header("x-auth-token", `Bearer ${token}`).status(201).json({ token });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
